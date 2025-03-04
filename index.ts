@@ -1,6 +1,13 @@
 import http from 'node:http';
+import {
+  createFederation
+  , MemoryKvStore
+} from "@fedify/fedify";
 
-http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World\n');
-}).listen(3000);
+const federation
+  = createFederation
+    <void>({
+      kv
+        : new MemoryKvStore
+          (),
+    });
