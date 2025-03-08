@@ -42,6 +42,7 @@ serve({
   },
 });
 
-await ngrok.connect({ addr: 8080, authtoken_from_env: true }).then((listener) => {
+
+await ngrok.connect({ addr: 8080, authtoken: process.env.NGROK_AUTHTOKEN }).then((listener) => {
   console.log(`Server running at ${listener.url()}`);
 });
