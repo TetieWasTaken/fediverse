@@ -7,17 +7,20 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --env-file=.env --import tsx server.ts",
+    "dev": "node --env-file=.env --import tsx test.ts"
   },
   "dependencies": {
     "@deno/kv": "^0.9.0",
     "@fedify/fedify": "^1.4.5",
+    "@fedify/redis": "^0.3.0",
     "@hono/node-server": "^1.13.8",
     "@logtape/logtape": "^0.9.0",
-    "@ngrok/ngrok": "^1.4.1"
+    "@ngrok/ngrok": "^1.4.1",
+    "ioredis": "^5.6.0"
   },
   "devDependencies": {
-    "@types/node": "^22.13.9",
+    "@types/node": "^22.13.10",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   }

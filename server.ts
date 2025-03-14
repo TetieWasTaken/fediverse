@@ -10,6 +10,8 @@ import {
 } from "@fedify/fedify";
 import { serve } from "@hono/node-server";
 
+console.log("\u001b[33mSTARTING SERVER\u001b[0m");
+
 class ExtendedMemoryKvStore extends MemoryKvStore {
 	store: { [key: string]: any } = {};
 	async *list<T>(options: { prefix: string[] }): AsyncIterable<{ key: string[]; value: T }> {
@@ -116,8 +118,8 @@ federation
 serve({
 	port: 8080,
 	async fetch(request) {
+		console.log(`\u001b[33mReceived request for URL: ${request.url}\u001b[0m`);
 		const url = new URL(request.url);
-		console.log(`Received request for URL: ${url.pathname}`);
 		// The home page:
 		if (url.pathname === "/") {
 			const followers: string[] = [];
@@ -127,7 +129,8 @@ serve({
 				if (followers.includes(entry.value)) continue;
 				followers.push(entry.value);
 			}
-			return new Response(`<ul>${followers.map((f) => `<li>${f}</li>`)}</ul>`, {
+
+			return new Response(`<h1>hoi</h1><ul>${followers.map((f) => `<li>${f}</li>`)}</ul>`, {
 				headers: { "Content-Type": "text/html; charset=utf-8" },
 			});
 		}
